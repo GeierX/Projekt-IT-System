@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EPS - Base{% endblock %}</title>
+    <link rel="icon" href="{% static 'base/pictures/logoPage-removebg.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" type="text/css">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}" type="text/css">
+    <script>
+        function transform(x) {
+            x.classList.toggle("change");
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        setTimeout(function(){ 
+            document.getElementById("message").style.display = 'none'
+            },3000); // after 3 secs
+    </script>
+    {% block style %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="justify_start">
+            <div class="dropdown_container" onclick="transform(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <div id="myDropdown" class="dropdown_content">
+                    <a href="" {% block activeHome %}{% endblock %}>Home</a>
+                    <a href="fahrtangebot" {% block activePost %}{% endblock %}>Fahrt anbieten</a>
+                    <a href="fahrtsuche" {% block activeSearch %}{% endblock %}>Fahrt suchen</a>
+                    <a href="profil/{{user.username}}" {% block activeMyProfile %}{% endblock %}>Mein Profil</a>
+                    <a href="settings" {% block activeProfilesettings %}{% endblock %}>Profil Einstellungen</a>
+                    <a href="impressum" {% block activeImpressum %}{% endblock %}>Impressum/Kontakt</a>
+                    <a href="logout/">LOGOUT</a>
+                </div>
+            </div>
+            <div class="logo_name">
+                <a href="" class="logo_name" style="text-decoration:none">
+                    <img src="{% static 'greenhubapp/pictures/logoPage-removebg.png' %}" alt="Logo" class="logo">
+                    <h1 class="logoname">GreenHub -
+                        {% block active2Home %}{% endblock %}
+                        {% block active2Post %}{% endblock %}
+                        {% block active2Search %}{% endblock %}
+                        {% block active2MyProfile %}{% endblock %}
+                        {% block active2Profilesettings %}{% endblock %}
+                        {% block active2Impressum %}{% endblock %}
+                    </h1>
+                </a>
+            </div>
+        </div>
+        <div class="justify_flexend_header">
+            <div class="profil">
+                <a href="profil/{{user.username}}" class="profilverlinkung">
+                    <p class="profilname">Hallo, <strong>{{user.username}}</strong></p>
+                </a>
+                <a href="profil/{{user.username}}"><img src="{{ user_profile_self.profileimg.url }}"
+                        alt="Profilbild von {{user.username}}" class="profilbild"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+</body>
+
+</html>
