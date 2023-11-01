@@ -29,9 +29,11 @@
         <div class="navbar">
             <a href="/" {% block activeHome %}{% endblock %}>Home</a>
             <a href="#" {% block activeAntragStellen %}{% endblock %}>Antrag stellen</a>
-            <a href="#" {% block activeMeineAnträge %}{% endblock %}>Meine Anträge</a>
-            <a href="#" {% block activeKontakt %}{% endblock %}>Kontankt</a>
+            <a href="#" class="loggedin" {% block activeMeineAnträge %}{% endblock %}>Meine Anträge</a>
+            <a href="#" {% block activeKontakt %}{% endblock %}>Kontakt</a>
             <a href="#" {% block activeFAQ %}{% endblock %}>FAQ</a>
+            <a href="#" class="right">Anmelden</a>
+            <a href="#" class="right register-btn">Registrieren</a>
         </div>
         {% endblock %}
         {% block main %}{% endblock %}

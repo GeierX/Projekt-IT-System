@@ -6,6 +6,7 @@
 
     body {
         margin: 0;
+        background-color: #f4f4f4;
     }
 
     html {
@@ -87,6 +88,8 @@
 
     .subheader {
         font-size: 2rem;
+        margin: 0;
+        padding: 0.5rem 0;
     }
 
     #smart_city {
@@ -107,8 +110,12 @@
     }
 
     .navbar {
-        overflow: hidden;
         background-color: #333;
+        overflow: auto;
+        color: white;
+        padding: 0;
+        text-align: center;
+        margin: 0;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -122,7 +129,7 @@
         padding: 1.4rem 2rem;
         text-decoration: none;
         font-size: 2rem;
-        margin-right: 0.5rem;
+        transition: background-color 0.3s, border-radius 0.3s ease;
     }
 
     .navbar a:hover {
@@ -131,10 +138,31 @@
         border-radius: 1rem;
     }
 
+    .navbar a.right {
+        float: right;
+    }
+
     .navbar a.active {
         background-color: #666;
         border-radius: 1rem;
         color: white;
+    }
+
+    a.register-btn {
+        background-color: #007BFF;
+        color: #fff;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s;
+    }
+
+    a.register-btn:hover {
+        background-color: #0056b3;
+        color: white;
+        border-radius: 1.5rem;
+    }
+
+    .loggedin {
+        display: none;
     }
 
     .row {
@@ -217,9 +245,18 @@
         background-color: rgb(94, 11, 11);
     }
 
-    .main {
+    /* .main {
         flex: 75%;
         background-color: white;
+    } */
+
+    .main-section {
+        margin: 20px;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 2rem;
     }
 
     .container-fallstudienberichte {
@@ -319,6 +356,9 @@
         color: #fff;
         display: flex;
         justify-content: space-between;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
 
     .footer p {
@@ -374,7 +414,7 @@
         margin-bottom: 2rem;
         margin-top: 2rem;
     }
-    
+
     .apps-appcontainer {
         padding: 1rem;
         border-radius: 15%;
