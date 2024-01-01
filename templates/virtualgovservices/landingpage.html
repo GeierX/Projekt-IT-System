@@ -1,0 +1,38 @@
+{% extends "virtualgovservices/base.html" %} 
+{% block title %}eGov - Willkommen{% endblock %} 
+{% block headertitle %}VirtualGov Services{% endblock %} 
+{% block headersubtitle %}Willkommen zum digitalisierten Verwaltungsverfahren.{% endblock %} 
+{% block headerothers %}{% endblock %} 
+{% block navbar %}
+<div class="navbar">
+  <a href="https://193.196.52.181/virtualgovservices/" class="active">Home</a>
+  <a href="#">Antrag stellen</a>
+  <a href="#">Kontakt</a>
+  <a href="#">FAQ</a>
+  <a href="https://193.196.52.181/virtualgovservices/login/" class="right">Anmelden</a>
+  <a href="https://193.196.52.181/virtualgovservices/signup/" class="right register-btn">Registrieren</a>
+</div>
+{% endblock %}
+{% block main %} 
+{% load static %}
+<div class="main-section">
+  <h2>Herzlich Willkommen</h2>
+  <p>Unser System ermöglicht es Bürgerinnen und Bürgern, Anträge online zu stellen, den Fortschritt ihrer Anträge zu verfolgen und alle notwendigen Dokumente digital zu erhalten. Jedes Dokument wird digital signiert und kann über eine eindeutige URL abgerufen werden.</p>
+</div>
+<div class="main-section">
+  <h2>Online-Anträge</h2>
+  <a href="hundeanmeldung">Hundesteuer - Hund anmelden</a>
+  <br />
+  <a href="anschrift">Personalausweis - Anschrift ändern</a>
+</div>
+{% endblock %} 
+{% block loginxsignup %}{% endblock %} 
+{% block footer %}
+<footer class="footer" style="bottom: 0">
+  <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
+  <div class="flexbox">
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutzerklärung</a>
+  </div>
+</footer>
+{% endblock %}

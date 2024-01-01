@@ -1,0 +1,39 @@
+{% extends "virtualgovservices/base.html" %}
+{% block title %}eGov - Einstellungen von {{ user.username }}{% endblock %}
+{% block header %}{% endblock %}
+{% block loginxsignup %}{% endblock %}
+
+{% block main %}
+{% load static %}
+<div class="main-section">
+    <h2>Profil Einstellungen von {{ user.username }}</h2>
+    <p>---</p>
+    <form action="" method="POST" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        <label for="profileimg">Aktuelles Profilbild:</label>
+        <img src="{{loggedin_user.profileimg.url}}" class="profileimg"><br>
+        <label for="profileimg">Profilbild ändern:</label>
+        <input type="file" name="profileimg" value="" class="">
+        <label for="anrede">Anrede:</label>
+        <input type="text" name="anrede" class="" value="{{loggedin_user.anrede}}">
+        <label for="vorname">Vorname:</label>
+        <input type="text" name="vorname" class="" value="{{loggedin_user.vorname}}">
+        <label for="nachname">Nachname:</label>
+        <input type="text" name="nachname" class="" value="{{loggedin_user.nachname}}">
+        <label for="strasse">Strasse:</label>
+        <input type="text" name="strasse" class="" value="{{loggedin_user.strasse}}">
+        <label for="postleitzahl">Postleitzahl:</label>
+        <input type="text" name="postleitzahl" class="" value="{{loggedin_user.postleitzahl}}">
+        <label for="ort">Wohnort:</label>
+        <input type="text" name="ort" class="" value="{{loggedin_user.ort}}">
+        <label for="telefonnummer">Telefonnummer:</label>
+        <input type="text" name="telefonnummer" class="" value="{{loggedin_user.telefonnummer}}">
+        <label for="email">Email:</label>
+        <input type="text" name="email" class="" value="{{loggedin_user.email}}">
+        <label for="geburtsdatum">Geburtsdatum:</label>
+        <input type="date" name="geburtsdatum" class="" required value="{{ loggedin_user.geburtsdatum|date:'Y-m-d' }}">
+        <input type="submit" value="Speichern">
+    </form>
+</div>
+{% endblock %}
+

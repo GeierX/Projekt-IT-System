@@ -1,0 +1,31 @@
+{% extends "virtualgovservices/base.html" %} 
+{% block title %}eGov - Startseite{% endblock %} 
+{% block headertitle %}VirtualGov Services{% endblock %} 
+{% block headersubtitle %}<a href="profile/{{user.username}}" class="profilverlinkung">
+    <p class="profilname">Hallo, <strong>{{user.username}}</strong></p>
+  </a>{% endblock %} 
+{% block headerothers %}{% endblock %} 
+{% block activeHome %}class='active'{% endblock %} 
+{% block main %} 
+{% load static %}
+<div class="main-section">
+  <h2>Herzlich Willkommen</h2>
+  <p>Unser System ermöglicht es Bürgerinnen und Bürgern, Anträge online zu stellen, den Fortschritt ihrer Anträge zu verfolgen und alle notwendigen Dokumente digital zu erhalten. Jedes Dokument wird digital signiert und kann über eine eindeutige URL abgerufen werden.</p>
+</div>
+<div class="main-section">
+  <h2>Online-Anträge</h2>
+  <a href="hundeanmeldung">Hundesteuer - Hund anmelden</a>
+  <br />
+  <a href="anschrift">Personalausweis - Anschrift ändern</a>
+</div>
+{% endblock %} 
+{% block loginxsignup %}{% endblock %} 
+{% block footer %}
+<footer class="footer" style="bottom: 0">
+  <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
+  <div class="flexbox">
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutzerklärung</a>
+  </div>
+</footer>
+{% endblock %}

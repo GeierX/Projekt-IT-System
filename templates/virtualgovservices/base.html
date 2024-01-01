@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Titel der Seite{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static '' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" type="text/css" />
+    {% block style %}
+    <link rel="stylesheet" href="{% static 'virtualgovservices/css/style.css' %}" type="text/css" />
+    {% endblock %}
+    <script>
+      // function transform(x) {
+      //   x.classList.toggle("change");
+      //   document.getElementById("myDropdown").classList.toggle("show");
+      // }
+
+      setTimeout(function () {
+        document.getElementById("message").style.display = "none";
+      }, 5000); // after 5 secs
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Event-Listener für das Absenden des Formulars
+        document.querySelector('.form').addEventListener('submit', function(event) {
+          // Selektiere alle Elemente mit der Klasse 'hidden'
+          var hiddenElements = document.getElementsByClassName('hidden');
+        
+          // Entferne alle 'hidden'-Elemente aus dem DOM
+          while(hiddenElements.length > 0){
+            hiddenElements[0].parentNode.removeChild(hiddenElements[0]);
+          }
+        });
+        // Klassenwechsel beim Klicken auf den Button
+        document.getElementById("showValuesButton").addEventListener("click", function() {
+          var shownElements = document.getElementsByClassName('shown');
+          var hiddenElements = document.getElementsByClassName('hidden');
+    
+          // Sammle alle Elemente in Arrays, da die Klassen sich ändern werden
+          var shownArray = Array.from(shownElements);
+          var hiddenArray = Array.from(hiddenElements);
+    
+          // Tausche die Klassen
+          shownArray.forEach(function(element) {
+            element.classList.remove('shown');
+            element.classList.add('hidden');
+          });
+          hiddenArray.forEach(function(element) {
+            element.classList.remove('hidden');
+            element.classList.add('shown');
+          });
+
+          // Entferne den Button
+          var button = document.getElementById("showValuesButton");
+          button.parentNode.removeChild(button);
+          
+          // Entferne alle hidden Elemente
+          var newHiddenElements = document.getElementsByClassName('hidden');
+          while(newHiddenElements.length > 0){
+            newHiddenElements[0].parentNode.removeChild(newHiddenElements[0]);
+          }
+        });
+      });
+    
+    
+    </script>
+  </head>
+  <body>
+    {% block header %}
+    <header class="header">
+      <div class="mainheader underline_white">{% block headertitle %}{% endblock %}</div>
+      <div class="subheader">{% block headersubtitle %}{% endblock %}</div>
+      {% block headerothers %}{% endblock %}
+    </header>
+    {% endblock %}
+    <main class="main">
+      {% block navbar %}
+      <div class="navbar">
+        <a href="/virtualgovservices/" {% block activeHome %}{% endblock %}>Home</a>
+        <a href="#" {% block activeAntragStellen %}{% endblock %}>Antrag stellen</a>
+        <a href="/virtualgovservices/meine_antraege/" {% block activeMeineAnträge %}{% endblock %}>Meine Anträge</a>
+        <a href="/virtualgovservices/settings/" {% block activeSettings %}{% endblock %}>Profileinstellungen</a>
+        <a href="#" {% block activeKontakt %}{% endblock %}>Kontakt</a>
+        <a href="#" {% block activeFAQ %}{% endblock %}>FAQ</a>
+        <a href="/virtualgovservices/profile/{{user.username}}" class="right" style="margin-right: 0rem; padding: 0.6rem 2rem 0.1rem 2rem;"><img src="{{ loggedin_user.profileimg.url }}"
+              alt="Profilbild von {{user.username}}" class="profilbild"></a>
+        <a href="/virtualgovservices/logout/" class="right">LOGOUT</a>
+      </div>
+      {% endblock %} 
+      {% if messages %} 
+      {% for message in messages %}
+      <div class="{{ message.tags }}" id="message">
+        {{ message }}
+        <button id="close" onclick="this.parentNode.parentNode.removeChild(this.parentNode); return false;">X</button>
+      </div>
+      {% endfor %} 
+      {% endif %} 
+      {% block main %}{% endblock %} 
+      {% block loginxsignup %}
+      <div class="container_grid">
+        <div class="container_left">
+          <div class="centered_img">
+            <a href="/">
+              <img src="{% static 'logoPage-removebg.png' %}" alt="Logo" style="background-color: white; border-radius: 50%" />
+            </a>
+          </div>
+          <div class="container_form_cta">
+            <form action="" class="UserForm" method="post">
+              {% csrf_token %}
+              <div class="form_build">
+                <div class="username">
+                  <img src="{% static 'virtualgovservices/pictures/username_img.png' %}" alt="" class="form_icon" />
+                  <input class="input_input" type="text" name="username" id="username" placeholder="Benutzername" required />
+                </div>
+                <div class="password">
+                  <img src="{% static 'virtualgovservices/pictures/password_img.png' %}" alt="" class="form_icon" />
+                  <input class="input_input" type="password" name="password" id="password" placeholder="Passwort" required />
+                </div>
+                <button class="form_submit-btn" value="Anmelden" type="submit">{% block loginorsignup %}{% endblock %}</button>
+              </div>
+            </form>
+          </div>
+          {% block abfragekonto %}{% endblock %}
+        </div>
+        {% comment %} <div class="container_right">
+          <div class="container_social">
+            <img src="{% static 'virtualgovservices/pictures/facebook_logo.png' %}" alt="Logo Facebook" class="logo" />
+            <button class="social-signin facebook">Log in with facebook</button>
+          </div>
+          <div class="container_social">
+            <img src="{% static 'virtualgovservices/pictures/twitter_logo.png' %}" alt="Logo Twitter" class="logo" />
+            <button class="social-signin twitter">Log in with Twitter</button>
+          </div>
+          <div class="container_social">
+            <img src="{% static 'virtualgovservices/pictures/google_logo.png' %}" alt="Logo Google+" class="logo" />
+            <button class="social-signin google">Log in with Google+</button>
+          </div>
+        </div> {% endcomment %}
+      </div>
+      {% endblock %}
+    </main>
+    {% block footer %}
+    <footer class="footer">
+      <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
+      <div class="flexbox">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutzerklärung</a>
+      </div>
+    </footer>
+    {% endblock %}
+  </body>
+</html>

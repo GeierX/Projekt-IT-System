@@ -1,0 +1,70 @@
+{% extends "virtualgovservices/base.html" %}
+{% block title %}eGov - Hundeanmeldung{% endblock %}
+{% block header %}{% endblock %}
+{% block activeAntragStellen %}class='active'{% endblock %}
+{% block loginxsignup %}{% endblock %}
+{% block main %}
+  {% load static %}
+  <div class="main-section">
+    <h2>Formular: Hundesteuer - Hund anmelden</h2>
+    <p>---</p>
+    <form class="form" action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="container_grid">
+        <div class="container_left">
+          <h2>Persönliche Daten der Hundehalterin/des Hundehalters</h2>
+          <button type="button" id="showValuesButton" class="">Aus dem Profil übernehmen</button>
+          <label for="anrede">Anrede:</label>
+          <input type="text" name="anrede" class="shown" required>
+          <input type="text" name="anrede" class="hidden" required value="{{loggedin_user.anrede}}">
+          <label for="vorname">Vorname:</label>
+          <input type="text" name="vorname" class="shown" required>
+          <input type="text" name="vorname" class="hidden" required value="{{loggedin_user.vorname}}">
+          <label for="nachname">Nachname:</label>
+          <input type="text" name="nachname" class="shown" required>
+          <input type="text" name="nachname" class="hidden" required value="{{loggedin_user.nachname}}">
+          <label for="strasse">Strasse:</label>
+          <input type="text" name="strasse" class="shown" required>
+          <input type="text" name="strasse" class="hidden" required value="{{loggedin_user.strasse}}">
+          <label for="postleitzahl">Postleitzahl:</label>
+          <input type="text" name="postleitzahl" class="shown" required>
+          <input type="text" name="postleitzahl" class="hidden" required value="{{loggedin_user.postleitzahl}}">
+          <label for="ort">Wohnort:</label>
+          <input type="text" name="ort" class="shown" required>
+          <input type="text" name="ort" class="hidden" required value="{{loggedin_user.ort}}">
+          <label for="telefonnummer">Telefonnummer:</label>
+          <input type="text" name="telefonnummer" class="shown" required>
+          <input type="text" name="telefonnummer" class="hidden" required value="{{loggedin_user.telefonnummer}}">
+          <label for="email">Email:</label>
+          <input type="text" name="email" class="shown" required>
+          <input type="text" name="email" class="hidden" required value="{{loggedin_user.email}}">
+          <label for="geburtsdatum">Geburtsdatum:</label>
+          <input type="date" name="geburtsdatum" class="shown" required>
+          <input type="date" name="geburtsdatum" class="hidden" required value="{{ loggedin_user.geburtsdatum|date:'Y-m-d' }}">
+        </div>
+        <div class="container_right">
+          <h2>Angaben zum Hund</h2>
+          <!-- <button type="button" id="showValuesButton" class="">Aus dem Profil übernehmen</button> -->
+          <label for="name_hund">Name:</label>
+          <input type="text" name="name_hund" class="" required>
+          <label for="rasse_hund">Rasse:</label>
+          <input type="text" name="rasse_hund" class="" required>
+          <label for="geschlecht_hund">Geschlecht:</label>
+          <input type="radio" id="männlich" name="geschlecht_hund" class="" value="männlich" required>
+          <div>männlich</div>
+          <input type="radio" id="weiblich" name="geschlecht_hund" class="" value="weiblich">
+          <div>weiblich</div>
+          <label for="kampfhund">Kampfhund?:</label>
+          <input type="radio" id="ja" name="kampfhund" class="" value="Ja" required>
+          <div>Ja</div>
+          <input type="radio" id="nein" name="kampfhund" class="" value="Nein">
+          <div>Nein</div>
+          <label for="wurftag_hund">Wurftag:</label>
+          <input type="date" name="wurftag_hund" class="" required>
+          <label for="beginn_haltung_hund">Der Hund wird von mir gehalten seit dem:</label>
+          <input type="date" name="beginn_haltung_hund" class="" required>
+        </div>
+      </div>
+      <input type="submit" value="Absenden" class="absenden">
+    </div>
+  {% endblock %}

@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Antragsdokument</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1/qrcode.min.js"></script>
+    <style type="text/css">
+        @media screen {
+            /* body {
+                font-family: Arial, sans-serif;
+                font-size: 12pt;
+                background: #b9b9b9;
+                color: #000;
+            } */
+
+            /* Stil für die DIN A4-Seite */
+            .a4-page {
+                width: 210mm;
+                min-height: 297mm;
+                margin: auto;
+                padding: 20mm;
+                border: 1px solid #D3D3D3;
+                background: white;
+                box-shadow: 0 0 5mm rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+            }
+
+            /* Stil für die Überschriften und Absätze */
+            .a4-page h2,
+            .a4-page p {
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
+
+            /* Stil für die Abschnitte */
+            .section {
+                margin-bottom: 20px;
+            }
+
+            /* Stil für die Daten-Container */
+            .data-container {
+                background: #f9f9f9;
+                padding: 10px;
+                border: 1px solid #e0e0e0;
+                border-radius: 5px;
+            }
+
+            /* Stil für einzelne Datenpunkte */
+            .data-item {
+                margin-bottom: 10px;
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
+
+            /* Stil für die Labels der Daten */
+            .data-label {
+                font-weight: bold;
+            }
+
+            /* Stil für QR-Code */
+            .qr-code-img {
+                max-width: 100px;
+                height: auto;
+            }
+            /* Flexbox container */
+            .flexbox {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+
+            /* Left section */
+            .left {
+                flex-grow: 1;
+            }
+
+            /* Right section for QR Code */
+            .right {
+                flex-shrink: 0; /* Prevents the right section from shrinking */
+                padding-left: 20px; /* Adds some space between left and right sections */
+            }
+
+        }
+
+        @media print {
+            .a4-page {
+                width: 210mm;
+                min-height: 297mm;
+                margin: 0;
+                padding: 20mm;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a4-page">
+        <div class="flexbox">
+            <div class="left">
+                <h2>Antragszusammenfassung zum Antrag - {{ hundeanmeldung.verfahren.themengebiet }}</h2>
+                <p>Antrag von {{hundeanmeldung.buerger.anrede}} {{ hundeanmeldung.buerger.vorname }} {{hundeanmeldung.buerger.nachname }}, eingegangen am {{ hundeanmeldung.angemeldet_am|date:"d.m.Y" }}</p>
+            </div>
+            <div class="right">
+                <div id="qrCode"></div>
+                <script>
+                    var currentPageUrl = window.location.href;
+                    new QRCode(document.getElementById("qrCode"), {
+                        text: currentPageUrl,
+                        width: 128,
+                        height: 128,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                </script>
+            </div>
+        </div>
+
+        <!-- Bürgerdaten -->
+        <div class="section">
+            <h2>Persönliche Daten des Bürgers</h2>
+            <div class="data-container">
+                <div class="data-item">
+                    <span class="data-label">Name:</span> {{ hundeanmeldung.buerger.anrede }} 
+                    {{ hundeanmeldung.buerger.vorname }}
+                    {{ hundeanmeldung.buerger.nachname }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Adresse:</span> {{ hundeanmeldung.buerger.strasse }},
+                    {{ hundeanmeldung.buerger.postleitzahl }}
+                    {{ hundeanmeldung.buerger.ort }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Telefonnummer:</span> {{ hundeanmeldung.buerger.telefonnummer }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">E-Mail:</span> {{ hundeanmeldung.buerger.email }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Geburtsdatum:</span> {{ hundeanmeldung.buerger.geburtsdatum|date:"d.m.Y" }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Hundeanmeldungsdaten -->
+        <div class="section">
+            <h2>Angaben zum anzumeldenden Hund</h2>
+            <div class="data-container">
+                <div class="data-item">
+                    <span class="data-label">Name:</span> {{ hundeanmeldung.name_hund }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Geschlecht:</span> {{ hundeanmeldung.geschlecht_hund }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Rasse:</span> {{ hundeanmeldung.rasse_hund }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Kampfhund:</span> {{ hundeanmeldung.kampfhund }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Wurftag:</span> {{ hundeanmeldung.wurftag_hund }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Beginn Haltung:</span> {{ hundeanmeldung.beginn_haltung_hund }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Beamten-Daten -->
+        <div class="section">
+            <h2>Angaben zum Bearbeiter</h2>
+            <div class="data-container">
+                <div class="data-item">
+                    <span class="data-label">Name:</span> {{ hundeanmeldung.verfahren.verantwortlicher }}
+                <div class="data-item">
+                    <span class="data-label">Telefonnummer:</span> {{ hundeanmeldung.wurftag_hund }}
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

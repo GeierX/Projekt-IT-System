@@ -1,0 +1,12 @@
+{% for verfahren in verfahren_liste %}
+    <h2>Verfahren {{ verfahren.themengebiet }}</h2>
+    <p>vom {{ verfahren.erstellt_am }}</p>
+    <h3>Verfahrens-ID: {{ verfahren.nummer }}</h3>
+    <h3>Status: {{ verfahren.zustand }}, aktualisiert am {{ aktualisiert_am }}</h3>
+    <h4>Dokumente:</h4>
+    <ul>
+        {% for dokument in verfahren.dokument_set.all %}
+            <li><a href="{{dokument.url}}">{{ dokument.inhalt }}</a></li>
+        {% endfor %}
+    </ul>
+{% endfor %}
