@@ -3,7 +3,7 @@
 {% block header %}{% endblock %}
 {% block loginxsignup %}{% endblock %}
 {% block activeSettings %}class='active'{% endblock %}
-{% block beamter %}{% endblock %}
+{% block bürger %}{% endblock %}
 {% block main %}
 {% load static %}
 <div class="main-section">
@@ -36,18 +36,6 @@
                 <input type="text" name="nachname" class="" value="{{loggedin_user.nachname}}">
             </div>
             <div class="form-field">
-                <label for="strasse">Strasse + Nr.:</label>
-                <input type="text" name="strasse" class="" value="{{loggedin_user.strasse}}">
-            </div>
-            <div class="form-field">
-                <label for="postleitzahl">Postleitzahl:</label>
-                <input type="text" name="postleitzahl" class="" value="{{loggedin_user.postleitzahl}}">
-            </div>
-            <div class="form-field">
-                <label for="ort">Wohnort:</label>
-                <input type="text" name="ort" class="" value="{{loggedin_user.ort}}">
-            </div>
-            <div class="form-field">
                 <label for="telefonnummer">Telefonnummer:</label>
                 <input type="text" name="telefonnummer" class="" value="{{loggedin_user.telefonnummer}}">
             </div>
@@ -56,8 +44,8 @@
                 <input type="text" name="email" class="" value="{{loggedin_user.email}}">
             </div>
             <div class="form-field">
-                <label for="geburtsdatum">Geburtsdatum:</label>
-                <input type="date" name="geburtsdatum" class="" required value="{{ loggedin_user.geburtsdatum|date:'Y-m-d' }}">
+                <label for="raum">Raum:</label>
+                <input type="text" name="raum" class="" required value="{{ loggedin_user.raum }}">
             </div>
             <input type="submit" value="Speichern">
         </div>

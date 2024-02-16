@@ -1,12 +1,34 @@
+{% extends "virtualgovservices/base.html" %}
+{% block title %}eGov - Meine Anträge{% endblock %}
+{% block header %}{% endblock %}
+{% block activeMeineAnträge %}class='active'{% endblock %}
+{% block loginxsignup %}{% endblock %}
+{% block beamter %}{% endblock %}
+{% block main %}
+{% load static %}
+
 {% for verfahren in verfahren_liste %}
+<div class="main-section" id="v{{ verfahren.nummer }}">
     <h2>Verfahren {{ verfahren.themengebiet }}</h2>
     <p>vom {{ verfahren.erstellt_am }}</p>
     <h3>Verfahrens-ID: {{ verfahren.nummer }}</h3>
-    <h3>Status: {{ verfahren.zustand }}, aktualisiert am {{ aktualisiert_am }}</h3>
-    <h4>Dokumente:</h4>
+    <h3>Status: {{ verfahren.zustand }}, aktualisiert am {{ verfahren.aktualisiert_am }}</h3>
+    <hr>
+    <div class="data-container">
+        <h4 class="underline">Sachbearbeiter:</h4>
+        <h3 style="color: black;">{{ verfahren.verantwortlicher.anrede }} {{ verfahren.verantwortlicher.vorname }} {{ verfahren.verantwortlicher.nachname }} </h3>
+        <h3 style="color: black;">Tel.: {{ verfahren.verantwortlicher.telefonnummer }}</h3>
+        <h3 style="color: black;">E-Mail: 
+            <a href="mailto:{{ verfahren.verantwortlicher.email }}?subject=Anfrage%20zu%20Verfahren-ID%20{{ verfahren.nummer }}&body=Antragssteller:%20{{ loggedin_user.anrede }}%20{{ loggedin_user.vorname }}%20{{ loggedin_user.nachname }}%0D%0ATelefonnummer:%20{{ loggedin_user.telefonnummer }}%0D%0AE-Mail:%20{{ loggedin_user.email }}%0D%0A%0D%0ASehr%20geehrte(r)%20{{ verfahren.verantwortlicher.anrede }}%20{{ verfahren.verantwortlicher.nachname }},%0D%0A%0D%0A">
+            {{ verfahren.verantwortlicher.email }}
+        </a></h3>
+    </div>
+    <h4 class="underline">Dokumente:</h4>
     <ul>
         {% for dokument in verfahren.dokument_set.all %}
-            <li><a href="{{dokument.url}}">{{ dokument.inhalt }}</a></li>
+        <li><a href="{{ dokument.url }}">{{ dokument.inhalt }}</a></li>
         {% endfor %}
     </ul>
+</div>
 {% endfor %}
+{% endblock %}

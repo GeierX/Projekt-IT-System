@@ -1,36 +1,49 @@
-{% extends "virtualgovservices/base.html" %} 
-{% block title %}eGov - Willkommen{% endblock %} 
-{% block headertitle %}VirtualGov Services{% endblock %} 
-{% block headersubtitle %}Willkommen zum digitalisierten Verwaltungsverfahren.{% endblock %} 
-{% block headerothers %}{% endblock %} 
+{% extends "virtualgovservices/base.html" %}
+{% load static %} 
+{% block title %}eGov - Willkommen{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'virtualgovservices/css/style_landingpage.css' %}" type="text/css" />{% endblock %}
+{% block header %}{% endblock %}
+{% block headertitle %}{% endblock %}
+{% block headersubtitle %}Willkommen zum digitalisierten Verwaltungsverfahren.{% endblock %}
+{% block headerothers %}{% endblock %}
 {% block navbar %}
 <div class="navbar">
-  <a href="https://193.196.52.181/virtualgovservices/" class="active">Home</a>
-  <a href="#">Antrag stellen</a>
-  <a href="#">Kontakt</a>
-  <a href="#">FAQ</a>
-  <a href="https://193.196.52.181/virtualgovservices/login/" class="right">Anmelden</a>
-  <a href="https://193.196.52.181/virtualgovservices/signup/" class="right register-btn">Registrieren</a>
+  <div class="logo-container">
+      <img src="{% static 'virtualgovservices/pictures/logoPage_blue.png' %}" alt="Logo" class="logo">
+      <p class="logoname">VirtualGov Services</p>
+  </div>
+  <div class="right">
+      <a href="https://193.196.52.181/virtualgovservices/login/">Anmelden</a>
+      <a href="https://193.196.52.181/virtualgovservices/signup/" class="register-btn">Registrieren</a>
+  </div>
 </div>
 {% endblock %}
-{% block main %} 
+{% block main %}
 {% load static %}
 <div class="main-section">
-  <h2>Herzlich Willkommen</h2>
-  <p>Unser System ermöglicht es Bürgerinnen und Bürgern, Anträge online zu stellen, den Fortschritt ihrer Anträge zu verfolgen und alle notwendigen Dokumente digital zu erhalten. Jedes Dokument wird digital signiert und kann über eine eindeutige URL abgerufen werden.</p>
+  <div>
+    <h2>Herzlich Willkommen <br> zu den voll</h2>
+    <h2 class="custom_h2">digitalisierten Verwaltungsverfahren</h2>
+    <p>Unser System ermöglicht es Bürgerinnen und Bürgern, Anträge online zu stellen, den Fortschritt ihrer Anträge zu
+      verfolgen und alle notwendigen Dokumente digital zu erhalten. Jedes Dokument wird digital signiert und kann über
+      eine eindeutige URL abgerufen werden.</p>
+  </div>
+  <div>
+    <h2>Mögliche Online-Anträge</h2>
+    <a href="hundeanmeldung">Hundesteuer - Hund anmelden</a>
+    <a href="wohnsitzanmeldung">Wohnsitz - Wohnsitz anmelden</a>
+    <a href="anschrift">Personalausweis - Anschrift ändern</a>
+  </div>
 </div>
-<div class="main-section">
-  <h2>Online-Anträge</h2>
-  <a href="hundeanmeldung">Hundesteuer - Hund anmelden</a>
-  <br />
-  <a href="anschrift">Personalausweis - Anschrift ändern</a>
-</div>
-{% endblock %} 
-{% block loginxsignup %}{% endblock %} 
+
+{% endblock %}
+{% block loginxsignup %}{% endblock %}
 {% block footer %}
-<footer class="footer" style="bottom: 0">
+<footer class="footer">
   <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
   <div class="flexbox">
+    <a href="#" {% block activeKontakt %}{% endblock %}>Kontakt</a>
+    <a href="#" {% block activeFAQ %}{% endblock %}>FAQ</a>
     <a href="/impressum">Impressum</a>
     <a href="/datenschutz">Datenschutzerklärung</a>
   </div>

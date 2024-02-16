@@ -1,0 +1,252 @@
+@media all {
+    * {
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background-color: #fff;
+    }
+
+    html {
+        font-size: 10px;
+        height: 100%;
+    }
+
+    .main {
+        padding: 0 2rem;
+    }
+
+    /*  ------  */
+    /*  Navbar  */
+    /*  ------  */
+
+    .navbar {
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+        height: 100px;
+        text-align: center;
+        margin: 3rem auto;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        max-width: 1200px;
+    }
+
+    /* Container für das Logo und den Namen, die links stehen sollen */
+    .navbar .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Stil für das Logo */
+    .logo {
+        height: 60px;
+        margin-right: 1rem;
+    }
+
+    /* Stil für den Namen des Logos */
+    .logoname {
+        font-size: 2.5rem;
+        color: #353535;
+        font-weight: bolder;
+    }
+
+    /* Stil für die Links, die rechts stehen sollen */
+    .navbar .right {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Stil für die Links */
+    .navbar a {
+        color: #3C6E71;
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        font-size: 2rem;
+        transition: background-color 0.3s, border-radius 0.3s ease;
+        border: 5px solid #3C6E71;
+    }
+
+    .navbar a:hover {
+        background-color: #3C6E71;
+        color: #fff;
+        border-radius: 1rem;
+    }
+
+    a.register-btn {
+        background-color: #284b63;
+        color: #fff;
+        border-radius: 0.5rem;
+        border: 5px solid #284b63;
+        transition: background-color 0.3s, border-color 0.3s, border-radius 0.3s ease;
+        margin-left: 5rem;
+    }
+
+    a.register-btn:hover {
+        background-color: #0056b3;
+        color: white;
+        border: 5px solid #0056b3;
+        border-radius: 2rem;
+    }
+
+    /*  --------------------  */
+    /*  Messages              */
+    /*  --------------------  */
+
+    .error {
+        position: relative;
+        text-align: center;
+        height: 45px;
+        width: 85%;
+        border-radius: 5px;
+        line-height: 45px;
+        background-color: red;
+        color: white;
+        font-size: 1.7rem;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .success {
+        position: relative;
+        text-align: center;
+        height: 45px;
+        width: 85%;
+        border-radius: 5px;
+        line-height: 45px;
+        background-color: green;
+        color: white;
+        font-size: 1.7rem;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    #close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 2rem;
+        line-height: 1;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #000000;
+        font-weight: 600;
+    }
+
+    /*  ------  */
+    /*  Main    */
+    /*  ------  */
+
+    .main-section {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem;
+        background-color: #d3d3d3;
+        border-radius: 1.5rem;
+    }
+
+    .main-section div {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 2.5rem;
+    }
+
+    .main-section h2 {
+        font-size: 5rem;
+    }
+
+    .custom_h2 {
+        font-size: 5rem;
+        color: #284b63;
+        margin-top: 0;
+        word-wrap: break-word;
+    }
+
+    .main-section p {
+        font-size: 2rem;
+        color: #353535;
+    }
+    
+    .main-section h2,
+    .main-section p,
+    .main-section a {
+        margin-bottom: 10px;
+    }
+
+    .main-section a {
+        display: block;
+        background-color: #3C6E71;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        transition: background-color 0.3s ease;
+        font-size: 2rem;
+        margin: 2rem 0;
+        border: 2px solid #3C6E71;
+    }
+
+    .main-section a:hover {
+        background-color: #d3d3d3;
+        color: #000;
+        border: 2px solid #3C6E71;
+    }
+
+    /*  ------  */
+    /*  Footer  */
+    /*  ------  */
+
+    .footer {
+        padding: 2rem;
+        background-color: #353535;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .footer p {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .footer a {
+        font-size: 1.5rem;
+        color: #fff;
+        text-decoration: underline;
+        padding: 0 2rem 0 0;
+    }
+}
+
+/* Media Query für kleinere Bildschirme */
+@media (max-width: 900px) {
+    .main-section {
+        grid-template-columns: 1fr;
+        /* Stapelt die Spalten auf kleinen Bildschirmen übereinander */
+    }
+}

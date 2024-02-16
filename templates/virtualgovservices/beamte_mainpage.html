@@ -51,10 +51,11 @@
     </div>
     <div class="nav-links">
       <!-- <a href="/virtualgovservices/" class="nav-link">Home</a> -->
-      <a href="/virtualgovservices/anträge/" class="nav-link">Antrag stellen</a>
-      <a href="/virtualgovservices/meine_antraege/">Meine
-        Anträge</a>
+      <!-- <a href="/virtualgovservices/anträge/" class="nav-link">Antrag stellen</a> -->
+      <a href="/virtualgovservices/meine_antraege/#offen">Offene Anträge</a>
+      <a href="/virtualgovservices/meine_antraege/#abgeschlossen">Abgeschlossen</a>
       <a href="/virtualgovservices/settings/">Profileinstellungen</a>
+      <a href="/virtualgovservices/statistik/">Statistik</a>
     </div>
   </div>
   <div class="logout">
@@ -66,13 +67,13 @@
     <div class="container_welcome">
       <h1 class="profilname">Willkommen auf dem Dashboard, {{loggedin_user.anrede}} <strong>{{loggedin_user.vorname}}
           {{loggedin_user.nachname}}</strong>.<br><br>
-        Hier findest du alles auf einem Blick.</h1>
+        Hier findest du alle Verfahren auf einem Blick.</h1>
     </div>
     <div class="offene_anträge">
-      <h1 style="font-size: xx-large; text-align: center;">Laufende Verfahren</h1>
+      <h1 style="font-size: xx-large; text-align: center;">Offene Verfahren</h1>
       <hr>
       {% for verfahren in verfahren_liste %}
-      {% if verfahren.status is not "abgeschlossen" %}
+      {% if verfahren.zustand != "abgeschlossen" %}
       <a href="https://193.196.52.181/virtualgovservices/meine_antraege/#v{{ verfahren.nummer }}">
         Verfahren {{ verfahren.themengebiet }}
       </a>
@@ -87,9 +88,9 @@
       <h1 style="font-size: xx-large; text-align: center;">Abgeschlossene Verfahren</h1>
       <hr>
       {% for verfahren in verfahren_liste %}
-      {% if verfahren.status is "abgeschlossen" %}
-      <a href="https://193.196.52.181/virtualgovservices/meine_antraege/#{{ verfahren.nummer }}">
-        <h2>Verfahren {{ verfahren.themengebiet }}</h2>
+      {% if verfahren.zustand == "abgeschlossen" %}
+      <a href="https://193.196.52.181/virtualgovservices/meine_antraege/#v{{ verfahren.nummer }}">
+        Verfahren {{ verfahren.themengebiet }}
       </a>
       <p>vom {{ verfahren.erstellt_am }}</p>
       <h3>Verfahrens-ID: {{ verfahren.nummer }}</h3>

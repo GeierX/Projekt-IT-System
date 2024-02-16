@@ -2,16 +2,27 @@
 {% block title %}eGov - Signup{% endblock %}
 {% block header %}{% endblock %}
 {% block navbar %}
-<div class="navbar">
-  <a href="https://193.196.52.181/virtualgovservices/">Home</a>
-  <a href="#">Antrag stellen</a>
-  <a href="#">Kontakt</a>
-  <a href="#">FAQ</a>
-  <a href="https://193.196.52.181/virtualgovservices/login/" class='right'>Anmelden</a>
-  <a href="https://193.196.52.181/virtualgovservices/signup/" class='right register-btn active'>Registrieren</a>
+<div style="background-color: #353535; padding: 0 2rem;">
+  <div class="navbar">
+    <a href="https://193.196.52.181/virtualgovservices/">Home</a>
+    <a href="https://193.196.52.181/virtualgovservices/signup/" class="right active">Registrieren</a>
+    <a href="https://193.196.52.181/virtualgovservices/login/" class='right register-btn'>Anmelden</a>
+  </div>
 </div>
 {% endblock %}
-{% block loginorsignup %}Registrieren{% endblock %}
+{% block anmeldenXregistrieren %}<h1 style="font-size: 4.5rem; text-decoration: underline; color: #353535;">Registrieren</h1>{% endblock %}
+{% block loginorsignup %}Kostenlos Registrieren{% endblock %}
 {% block abfragekonto %}
 <div class="size1-5rem" style="text-align: center;">Bereits regsitriert? <a href="https://193.196.52.181/virtualgovservices/login/">Hier anmelden!</a></div>
 {% endblock %}
+{% block footer %}
+    <footer class="footer" style="bottom: 0;">
+      <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
+      <div class="flexbox">
+        <a href="#" {% block activeKontakt %}{% endblock %}>Kontakt</a>
+        <a href="#" {% block activeFAQ %}{% endblock %}>FAQ</a>
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutzerklärung</a>
+      </div>
+    </footer>
+    {% endblock %}

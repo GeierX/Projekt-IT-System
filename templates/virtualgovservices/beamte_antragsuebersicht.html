@@ -1,0 +1,100 @@
+{% extends "virtualgovservices/base.html" %}
+{% block title %}eGov - Startseite{% endblock %}
+{% block header %}{% endblock %}
+{% block activeHome %}class='active'{% endblock %}
+{% block bürger %}{% endblock %}
+{% block main %}
+{% load static %}
+<div id="offen">
+  <div class="main-section">Anträge zur Bearbeitung</div>
+  {% for verfahren in verfahren_liste %}
+  {% if verfahren.zustand != "abgeschlossen" %}
+  <div class="main-section" id="v{{ verfahren.nummer }}">
+    <h2>Verfahren {{ verfahren.themengebiet }}</h2>
+    <p>vom {{ verfahren.erstellt_am }}</p>
+    <h3>Verfahrens-ID: {{ verfahren.nummer }}</h3>
+    <h3>Status: {{ verfahren.zustand }}, aktualisiert am {{ verfahren.aktualisiert_am }}</h3>
+    <hr>
+    <div class="data-container">
+      <h4 class="underline">Antragssteller:</h4>
+      <h3 style="color: black;">{{ verfahren.buerger_anrede }} {{ verfahren.buerger_vorname }} {{ verfahren.buerger_nachname }}</h3>
+      <h3 style="color: black;">Tel.: {{ verfahren.buerger_telefonnummer }}</h3>
+      <h3 style="color: black;">E-Mail: {{ verfahren.buerger_email }}</h3>
+    </div>
+    <h4 class="underline">Dokumente:</h4>
+    <ul>
+      {% for dokument in verfahren.dokument_set.all %}
+      <li><a href="{{ dokument.url }}">{{ dokument.inhalt }}</a></li>
+      {% endfor %}
+    </ul>
+    <div class="actions">
+      <h4 class="underline">Aktionen:</h4>
+      {% if verfahren.zustand != "Antrag angenommen" %}
+      <form action="{% url 'antrag_annehmen' verfahren.nummer %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Antrag annehmen</button>
+      </form>
+      {% endif %}
+      <h4 class="underline">Antrag Delegieren</h4>
+      <form action="{% url 'verfahren_delegieren' verfahren.nummer %}" method="post">
+        {% csrf_token %}
+        <label for="neuer_verantwortlicher">Neuen Verantwortlichen auswählen</label>
+        <select name="neuer_verantwortlicher" id="neuer_verantwortlicher" required>
+          {% for beamter in beamten_liste %}
+          <option value="{{ beamter.id }}">{{ beamter.anrede }} {{ beamter.vorname }} {{ beamter.nachname }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Delegieren</button>
+      </form>
+      {% if verfahren.zustand == "Antrag angenommen" %}
+      <h4 class="underline">Bescheid erstellen:</h4>
+      <form action="{% url 'bescheid_erstellen' verfahren.nummer %}" method="post">
+        {% csrf_token %}
+        {{ bescheid_form.as_p }}
+        <button type="submit">Bescheid erstellen</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+<div id="abgeschlossen">
+  <div class="main-section">Abgeschlossene Anträge</div>
+  {% for verfahren in verfahren_liste %}
+  {% if verfahren.zustand == "abgeschlossen" %}
+  <div class="main-section" id="v{{ verfahren.nummer }}">
+    <h2>Verfahren {{ verfahren.themengebiet }}</h2>
+    <p>vom {{ verfahren.erstellt_am }}</p>
+    <h3>Verfahrens-ID: {{ verfahren.nummer }}</h3>
+    <h3>Status: {{ verfahren.zustand }}, aktualisiert am {{ verfahren.aktualisiert_am }}</h3>
+    <hr>
+    <div class="data-container">
+      <h4 class="underline">Antragssteller:</h4>
+      <h3 style="color: black;">{{ verfahren.buerger_anrede }} {{ verfahren.buerger_vorname }} {{ verfahren.buerger_nachname }}</h3>
+      <h3 style="color: black;">Tel.: {{ verfahren.buerger_telefonnummer }}</h3>
+      <h3 style="color: black;">E-Mail: {{ verfahren.buerger_email }}</h3>
+    </div>
+    <h4 class="underline">Dokumente:</h4>
+    <ul>
+      {% for dokument in verfahren.dokument_set.all %}
+      <li><a href="{{ dokument.url }}">{{ dokument.inhalt }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}
+{% block loginxsignup %}{% endblock %}
+{% block footer %}
+<footer class="footer">
+  <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
+  <div class="flexbox">
+    <a href="#" {% block activeKontakt %}{% endblock %}>Kontakt</a>
+    <a href="#" {% block activeFAQ %}{% endblock %}>FAQ</a>
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutzerklärung</a>
+  </div>
+</footer>
+{% endblock %}

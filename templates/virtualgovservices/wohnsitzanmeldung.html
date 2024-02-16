@@ -1,5 +1,5 @@
 {% extends "virtualgovservices/base.html" %}
-{% block title %}eGov - Hundeanmeldung{% endblock %}
+{% block title %}eGov - Wohnsitzanmeldung{% endblock %}
 {% block header %}{% endblock %}
 {% block activeAntragStellen %}class='active'{% endblock %}
 {% block loginxsignup %}{% endblock %}
@@ -7,20 +7,20 @@
 {% block main %}
 {% load static %}
 <div class="main-section">
-  <h2>Formular: Hundesteuer - Hund anmelden</h2>
+  <h2>Formular: Wohnsitz - Wohnsitz anmelden</h2>
   <hr>
   <br>
   <form class="form" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="container_grid">
       <div class="container_left">
-        <h2>Persönliche Daten der Hundehalterin/des Hundehalters</h2>
+        <h2>Persönliche Daten</h2>
         <button type="button" id="showValuesButton" class="profile_btn">Aus dem Profil übernehmen</button>
         {{ buerger_form.as_p }}
       </div>
       <div class="container_right">
-        <h2>Angaben zum Hund</h2>
-        {{ hundeanmeldung_form.as_p }}
+        <h2>Angaben zur neuen Wohnung</h2>
+        {{ wohnsitzanmeldung_form.as_p }}
       </div>
     </div>
     <input type="submit" value="Absenden" class="absenden">

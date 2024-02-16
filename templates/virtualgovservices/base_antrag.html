@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Antragsdokument</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1/qrcode.min.js"></script>
-    <style type="text/css">
+    <style type="text/css"> 
         @media screen {
             /* body {
                 font-family: Arial, sans-serif;
@@ -28,7 +28,12 @@
             }
 
             /* Stil für die Überschriften und Absätze */
-            .a4-page h2,
+            .a4-page h2 {
+                font-family: Arial, sans-serif;
+                color: #333;
+                text-decoration: underline;
+            }
+
             .a4-page p {
                 font-family: Arial, sans-serif;
                 color: #333;
@@ -52,6 +57,9 @@
                 margin-bottom: 10px;
                 font-family: Arial, sans-serif;
                 color: #333;
+                display: grid;
+                grid-template-columns: 30% 70%;
+                border-bottom: solid 1px rgb(189, 189, 189);
             }
 
             /* Stil für die Labels der Daten */
@@ -101,8 +109,8 @@
     <div class="a4-page">
         <div class="flexbox">
             <div class="left">
-                <h2>Antragszusammenfassung zum Antrag - {{ hundeanmeldung.verfahren.themengebiet }}</h2>
-                <p>Antrag von {{hundeanmeldung.buerger.anrede}} {{ hundeanmeldung.buerger.vorname }} {{hundeanmeldung.buerger.nachname }}, eingegangen am {{ hundeanmeldung.angemeldet_am|date:"d.m.Y" }}</p>
+                <h2>Antragszusammenfassung zum Antrag - {{ antrag.verfahren.themengebiet }}</h2>
+                <p>Antrag von {{antrag.buerger.anrede}} {{ antrag.buerger.vorname }} {{antrag.buerger.nachname }}, eingegangen am {{ antrag.angemeldet_am|date:"d.m.Y" }}</p>
             </div>
             <div class="right">
                 <div id="qrCode"></div>
@@ -125,49 +133,36 @@
             <h2>Persönliche Daten des Bürgers</h2>
             <div class="data-container">
                 <div class="data-item">
-                    <span class="data-label">Name:</span> {{ hundeanmeldung.buerger.anrede }} 
-                    {{ hundeanmeldung.buerger.vorname }}
-                    {{ hundeanmeldung.buerger.nachname }}
+                    <span class="data-label">Name:</span> {{ antrag.buerger.anrede }} 
+                    {{ antrag.buerger.vorname }}
+                    {{ antrag.buerger.nachname }}
                 </div>
                 <div class="data-item">
-                    <span class="data-label">Adresse:</span> {{ hundeanmeldung.buerger.strasse }},
-                    {{ hundeanmeldung.buerger.postleitzahl }}
-                    {{ hundeanmeldung.buerger.ort }}
+                    <span class="data-label">Adresse:</span> {{ antrag.buerger.strasse }},
+                    {{ antrag.buerger.postleitzahl }}
+                    {{ antrag.buerger.ort }}
                 </div>
                 <div class="data-item">
-                    <span class="data-label">Telefonnummer:</span> {{ hundeanmeldung.buerger.telefonnummer }}
+                    <span class="data-label">Telefonnummer:</span> {{ antrag.buerger.telefonnummer }}
                 </div>
                 <div class="data-item">
-                    <span class="data-label">E-Mail:</span> {{ hundeanmeldung.buerger.email }}
+                    <span class="data-label">E-Mail:</span> {{ antrag.buerger.email }}
                 </div>
                 <div class="data-item">
-                    <span class="data-label">Geburtsdatum:</span> {{ hundeanmeldung.buerger.geburtsdatum|date:"d.m.Y" }}
+                    <span class="data-label">Geburtsdatum:</span> {{ antrag.buerger.geburtsdatum|date:"d.m.Y" }}
                 </div>
             </div>
         </div>
 
-        <!-- Hundeanmeldungsdaten -->
+        <!-- antragsdaten -->
         <div class="section">
-            <h2>Angaben zum anzumeldenden Hund</h2>
+            <h2>{{ header2 }}</h2>
             <div class="data-container">
+            {% for label, value in antrag_data.items %}
                 <div class="data-item">
-                    <span class="data-label">Name:</span> {{ hundeanmeldung.name_hund }}
+                    <span class="data-label">{{ label }}:</span> {{ value }}
                 </div>
-                <div class="data-item">
-                    <span class="data-label">Geschlecht:</span> {{ hundeanmeldung.geschlecht_hund }}
-                </div>
-                <div class="data-item">
-                    <span class="data-label">Rasse:</span> {{ hundeanmeldung.rasse_hund }}
-                </div>
-                <div class="data-item">
-                    <span class="data-label">Kampfhund:</span> {{ hundeanmeldung.kampfhund }}
-                </div>
-                <div class="data-item">
-                    <span class="data-label">Wurftag:</span> {{ hundeanmeldung.wurftag_hund }}
-                </div>
-                <div class="data-item">
-                    <span class="data-label">Beginn Haltung:</span> {{ hundeanmeldung.beginn_haltung_hund }}
-                </div>
+            {% endfor %}
             </div>
         </div>
 
@@ -176,13 +171,48 @@
             <h2>Angaben zum Bearbeiter</h2>
             <div class="data-container">
                 <div class="data-item">
-                    <span class="data-label">Name:</span> {{ hundeanmeldung.verfahren.verantwortlicher }}
+                    <span class="data-label">Name:</span> {{ antrag.verfahren.verantwortlicher }}
+                </div>
                 <div class="data-item">
-                    <span class="data-label">Telefonnummer:</span> {{ hundeanmeldung.wurftag_hund }}
+                    <span class="data-label">Telefonnummer:</span> {{ antrag.verfahren.verantwortlicher.telefonnummer }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">E-Mail:</span> {{ antrag.verfahren.verantwortlicher.email }}
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Sachgebiet:</span> {{ antrag.verfahren.verantwortlicher.zuständigkeit }}
                 </div>
             </div>
         </div>
+        {% if signed_xml_str %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Button zum Umschalten der Anzeige
+                var toggleButton = document.getElementById("toggleButton");
+        
+                // Textarea-Element
+                var signaturTextarea = document.getElementById("signatur");
+        
+                // Event-Listener für den Klick auf den Button
+                toggleButton.addEventListener("click", function() {
+                    // Umschalten der Anzeige des Textarea
+                    if (signaturTextarea.style.display === "none") {
+                        signaturTextarea.style.display = "block";
+                    } else {
+                        signaturTextarea.style.display = "none";
+                    }
+                });
+            });
+        </script>
+        <div class="section">
+            <h2>Signatur:</h2>
+            <button id="toggleButton">Signiert durch eGov</button>
+            <textarea readonly style="display: none;" id="signatur">{{ signed_xml_str|safe }}</textarea>
+        </div>
+        {% endif %}
 
+        
+    </div>
 
 </body>
 

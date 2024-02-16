@@ -1,0 +1,27 @@
+{% extends "virtualgovservices/base.html" %}
+{% block title %}eGov - Alle Anträge{% endblock %}
+{% block header %}{% endblock %}
+{% block activeMeineAnträge %}class='active'{% endblock %}
+{% block loginxsignup %}{% endblock %}
+{% block beamter %}{% endblock %}
+{% block main %}
+{% load static %}
+<div class="main-section">
+    <h2>Alle Anträge auf einem Blick</h2>
+    <ul>
+        <li><a href="/virtualgovservices/hundeanmeldung/">Hundesteuer: Hund anmelden</a></li>
+        <li><a href="/virtualgovservices/wohnsitzanmeldung/">Wohnsitz: Wohnung anmelden</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block footer %}
+  <footer class="footer" style="bottom: 0;">
+    <p>&copy; 2023 VirtualGov Services. Alle Rechte vorbehalten.</p>
+    <div class="flexbox">
+      <a href="#" {% block activeKontakt %}{% endblock %}>Kontakt</a>
+      <a href="#" {% block activeFAQ %}{% endblock %}>FAQ</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutzerklärung</a>
+    </div>
+  </footer>
+  {% endblock %}

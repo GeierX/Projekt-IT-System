@@ -6,7 +6,7 @@
 
     body {
         margin: 0;
-        background-color: #f4f4f4;
+        background-color: #d9d9d9;
     }
 
     html {
@@ -47,6 +47,10 @@
 
     .white {
         color: white;
+    }
+
+    .black {
+        color: black;
     }
 
     .size1-5rem {
@@ -114,16 +118,148 @@
         text-shadow: 0px 0px 2.5rem rgb(224, 7, 7);
     }
 
+    /* ------ */
+    /* Navbar */
+    /* ------ */
+
+    .navbar_burger {
+        width: 100%;
+        margin: auto;
+        height: 6.5rem;
+        padding: 0.6rem 2rem;
+        display: flex;
+        background-color: #353535;
+        justify-content: space-between;
+        border-bottom: 0.1rem solid #000;
+        position: sticky;
+        top: 0;
+    }
+
+    .justify_start {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .justify_flexend_header {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .dropdown_container {
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        position: relative;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        width: 35px;
+        height: 2px;
+        background-color: #fff;
+        margin: 9px 0;
+        transition: 0.4s;
+    }
+
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+
+    .change .bar2 {
+        opacity: 0;
+    }
+
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+
+    .dropdown_content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        right: 0;
+        border-radius: 2rem;
+        border-bottom: 0.1rem solid gray;
+    }
+
+    .dropdown_content a {
+        color: black;
+        padding: 1.2rem 1.6rem;
+        text-decoration: none;
+        display: block;
+        font-size: 1.7rem;
+    }
+
+    .dropdown_content a:hover {
+        color: #818181;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .logo_name {
+        display: flex;
+        /* padding-left: 0.5rem;
+        justify-content: flex-start; */
+    }
+
+    .logo {
+        height: 5rem;
+        border-radius: 50%;
+        /* background-color: #fff; */
+    }
+
+    .logoname {
+        color: #fff;
+        font-size: 2rem;
+        margin-left: 1rem;
+    }
+
+    .profil {
+        display: flex;
+        padding-right: 2rem;
+    }
+
+    .profilverlinkung {
+        text-decoration: none;
+        margin-right: 2rem;
+        color: #000;
+    }
+
+    .profilbild {
+        border-radius: 50%;
+        border: 0.1rem solid white;
+        height: 5rem;
+        width: 5rem;
+        margin-right: 2rem;
+    }
+
+    .profilname {
+        font-size: 2rem;
+        line-height: 1.5rem;
+        color: #fff;
+    }
+
     .navbar {
-        background-color: #333;
+        background-color: #353535;
         overflow: auto;
         color: white;
         padding: 0;
         text-align: center;
-        margin: 0;
+        margin: 0 auto;
         position: sticky;
         top: 0;
         z-index: 1;
+        max-width: 1200px;
+
     }
 
     .navbar a {
@@ -135,17 +271,18 @@
         text-decoration: none;
         font-size: 2rem;
         transition: background-color 0.3s, border-radius 0.3s ease;
-        margin-right: 0.5rem;
+        /* margin-right: 0.5rem; */
     }
 
     .navbar a:hover {
-        background-color: #ddd;
+        background-color: #d9d9d9;
         color: black;
         border-radius: 1rem;
     }
 
     .navbar a.right {
         float: right;
+        margin-left: 5rem;
     }
 
     .navbar a.right img.profilbild {
@@ -162,16 +299,19 @@
     }
 
     a.register-btn {
-        background-color: #007BFF;
+        background-color: #284b63;
         color: #fff;
         border-radius: 0.5rem;
-        transition: background-color 0.3s;
+        /* border: 5px solid #284b63; */
+        transition: background-color 0.3s, border-color 0.3s, border-radius 0.3s ease;
+        margin-left: 5rem;
     }
 
     a.register-btn:hover {
         background-color: #0056b3;
         color: white;
-        border-radius: 1.5rem;
+        /* border: 5px solid #0056b3; */
+        border-radius: 2rem;
     }
 
     .loggedin {
@@ -342,7 +482,7 @@
 
     .footer {
         padding: 2rem;
-        background-color: #333;
+        background-color: #353535;
         color: #fff;
         display: flex;
         justify-content: space-between;
@@ -422,15 +562,6 @@
 
     /* Login und Signup */
 
-    .container_grid {
-        display: grid;
-        max-width: 1128px;
-        margin: auto;
-        /* align-items: center; */
-        grid-template-columns: 50% 50%;
-        /* height: 100vh; */
-    }
-
     .container_hero_shot {
         height: 100%;
         margin: 0px 20px;
@@ -459,20 +590,6 @@
         justify-content: center;
         align-items: center;
     } */
-
-    .container_right,
-    .container_left {
-        /* display: flex; */
-        /* flex-direction: column; */
-        justify-content: center;
-        margin: 0rem 2rem;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.65);
-        border-radius: 25px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(6.3px);
-        /* height: 50rem; */
-    }
 
     .con1head {
         font-size: 5.5rem;
@@ -521,7 +638,7 @@
         font-size: 1.5rem;
         height: 45px;
         width: 100%;
-        border: 2px solid #1ABB1F;
+        border: 2px solid #3C6E71;
         border-radius: 1rem;
         background-color: white;
         text-align: center;
@@ -542,12 +659,10 @@
         background-color: #2977c9;
         color: white;
         font-size: 1.7rem;
-        margin-top: 63px;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin: 6.3rem 2rem 2rem 2rem;
         border: none;
         cursor: pointer;
+        transition: background-color 0.3s
     }
 
     .form_submit-btn:hover {
@@ -580,7 +695,6 @@
         border-radius: 25px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(6.3px);
-
     }
 
     .container_features {
@@ -671,11 +785,6 @@
         margin-right: 20px;
     }
 
-    .logo {
-        height: 60px;
-        margin-top: 12px;
-    }
-
     .error {
         position: relative;
         text-align: center;
@@ -693,6 +802,8 @@
         grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
     .success {
@@ -712,6 +823,8 @@
         grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
     #close {
@@ -734,6 +847,25 @@
         margin: 0 auto;
     } */
 
+    .profile_btn {
+        height: 45px;
+        width: 100%;
+        border-radius: 1rem;
+        line-height: normal;
+        background-color: #2977c9;
+        color: white;
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s
+    }
+
+    .profile_btn:hover {
+        background-color: #092e55;
+    }
+    
+
     .form h2 {
         font-size: 2rem;
         color: #787878;
@@ -751,7 +883,7 @@
     .form input[type="date"],
     .form input[type="file"],
     .form select {
-        width: 100%;
+        width: 75%;
         padding: 1rem;
         border: 0.2rem solid #ccc;
         border-radius: 1rem;
@@ -769,6 +901,7 @@
         cursor: pointer;
         border-radius: 0.5rem;
         font-size: 2rem;
+        width: 100%;
     }
 
     .form input[type="submit"]:hover {
@@ -778,6 +911,94 @@
     .hidden {
         display: none;
     }
+
+
+    /* Stil für Verfahrensübersicht */
+
+    /* Stil für die Überschriften */
+    .main-section h2,
+    .main-section h3,
+    .main-section h4 {
+        margin: 1rem 0;
+        color: #333;
+    }
+
+    /* Stil für das Datum und den Status */
+    .main-section p,
+    .main-section h3 {
+        font-size: 1.4rem;
+        color: #666;
+        margin: 0.5rem 0;
+    }
+
+    /* Stil für die Liste der Dokumente */
+    .main-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .main-section li {
+        background-color: #f9f9f9;
+        border: 0.1rem solid #e0e0e0;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .main-section li a {
+        text-decoration: none;
+        color: #0275d8;
+        display: block;
+    }
+
+    .main-section li a:hover {
+        background-color: #e0e0e0;
+    }
+
+    .data-container {
+        background: #f9f9f9;
+        padding: 0rem 1rem 1rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+
+    /* GRID */
+    .container_grid {
+        display: grid;
+        max-width: 1200px;
+        margin: auto;
+        /* align-items: center; */
+        grid-template-columns: 50% 50%;
+        /* height: 100vh; */
+    }
+
+    .container_right,
+    .container_left {
+        /* display: flex; */
+        /* flex-direction: column; */
+        justify-content: center;
+        margin: 0rem 2rem;
+        padding: 2rem;
+        border-radius: 25px;
+        background-color: #fff;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        /* height: 50rem; */
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Stil für das Hervorheben */
+    .highlight {
+        background-color: rgb(184, 184, 184);
+        /* oder eine andere Farbe Ihrer Wahl */
+        transition: background-color 1s ease-out;
+        /* sanfter Übergang */
+    }
+
+
 }
 
 @media only screen and (max-width: 1300px) {
@@ -797,6 +1018,11 @@
     .row {
         flex-direction: column;
         background-size: 100% 40%;
+    }
+
+    .container_grid {
+        grid-template-columns: 1fr;
+        /* Eine Spalte auf kleineren Bildschirmen */
     }
 }
 
